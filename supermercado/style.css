@@ -1,0 +1,143 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: black;
+}
+
+.container {
+    background-image: url('./img/supermercado\ por\ afuera.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 1366px;
+    height: 768px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(var(--escala, 1));
+    transform-origin: center center;
+}
+
+#sora {
+    position: absolute;
+    left: 33%;
+    top: 64%;
+    width: 10%;
+}
+
+
+
+#perro {
+    position: absolute;
+    left: 25%;
+    top: 73%;
+    width: 7%
+}
+
+#punto1 {
+    position: absolute;
+    top: 340px;
+    left: 40%;
+    cursor: pointer;
+    width: 3%;
+    top: 61%;
+}
+
+#punto1:hover {
+    transform: scale(1.3);
+}
+
+#punto2 {
+    position: absolute;
+    top: 340px;
+    left: 30%;
+    cursor: pointer;
+    width: 3%;
+    top: 75%;
+}
+
+#punto2:hover {
+    transform: scale(1.3);
+}
+
+
+#punto3 {
+    position: absolute;
+    top: 340px;
+    left: 20px;
+    width: 3%;
+    top: 20%;
+}
+
+#punto3:hover {
+    transform: scale(1.3);
+}
+
+#nube {
+    position: absolute;
+    width: 30%;
+    left: 10px;
+    top: 20%;
+}
+
+#flechaizq {
+    position: absolute;
+    width: 70px;
+    left: 20px;
+    top: 290px;
+    cursor: pointer;
+}
+
+#flechaizq:hover {
+    transform: scale(1.3);
+}
+
+#flechader {
+    position: absolute;
+    width: 70px;
+    left: 1280px;
+    top: 290px;
+    cursor: pointer;
+}
+
+#flechader:hover {
+    transform: scale(1.3);
+}
+
+#casa {
+    position: absolute;
+    left: 90%;
+    top: 70%;
+    width: 5%;
+    cursor: pointer;
+}
+
+#casa:hover {
+    transform: scale(1.3);
+}
+
+#sonidoBTN {
+    position: absolute;
+    left: 90%;
+    top: 85%;
+    width: 5%;
+    cursor: pointer;
+}
+
+#sonido:hover {
+    transform: scale(1.3);
+}
+
+#texto {
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
+    width: 100px;
+    position: absolute;
+    left: 40%;
+    top: 53%;
+}

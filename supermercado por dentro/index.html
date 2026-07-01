@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="muerte"></div>
+        <div id="asesino"></div>
+        <img id="punto1" src="./img/pi1.svg" alt="">
+        <img id="punto2" src="./img/pi2.svg" alt="">
+        <img id="flecha1" src="./img/flecha izquierda.svg" alt="" style="cursor:pointer;">
+        <img id="flecha2" src="./img/flecha derecha.svg" alt="" style="cursor:pointer;">
+        <img id="sonido" src="./img/sonido.svg" alt="" style="cursor:pointer;">
+        <img id="home" src="./img/home.svg" alt="" style="cursor:pointer;">
+        <audio id="inicio" src="./img/inicio.mp3"></audio>
+        <audio id="disparo" src="./img/disparo.mp3"></audio>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+    <script>
+        const soraAudio = document.getElementById('disparo');
+        const muertoanimado = lottie.loadAnimation({
+            container: document.getElementById("muerte"),
+            render: 'svg',
+            loop: false,
+            autoplay: false,
+            path: 'img/asesino.json'
+        })
+        document.getElementById('punto1').addEventListener("click", function () {
+            muertoanimado.stop()
+            muertoanimado.playSegments([1, 40], true)
+            muertoanimado.play()
+            muertoanimado.play()
+            setTimeout(function () {
+                soraAudio.play()
+            }, 550)
+        })
+        const muertesora = lottie.loadAnimation({
+            container: document.getElementById("asesino"),
+            render: 'svg',
+            loop: false,
+            autoplay: false,
+            path: './img/soramuerto.json'
+        })
+        document.getElementById('punto2').addEventListener("click", function () {
+            muertesora.stop()
+            muertesora.playSegments([1, 40], true)
+            muertesora.play()
+            muertesora.play()
+        })
+        const inicioAudio = document.getElementById('inicio');
+        const sonidoBtn = document.getElementById('sonido');
+        sonidoBtn.addEventListener('click', function () {
+            if (inicioAudio.paused) {
+                inicioAudio.play();
+                sonidoBtn.style.opacity = '1';
+            } else {
+                inicioAudio.pause();
+                sonidoBtn.style.opacity = '0.4';
+            }
+        });
+        const flecha2 = document.getElementById('flecha2');
+        flecha2.addEventListener('click', function () {
+            window.parent.postMessage('siguiente-escena', '*');
+        });
+
+        // Navegación hacia la escena anterior
+        const flecha1 = document.getElementById('flecha1');
+        flecha1.addEventListener('click', function () {
+            window.parent.postMessage('escena-anterior', '*');
+        });
+        function ajustarEscala() {
+            const escalaX = window.innerWidth / 1366;
+            const escalaY = window.innerHeight / 768;
+            const escala = Math.min(escalaX, escalaY);
+            document.documentElement.style.setProperty('--escala', escala);
+        }
+        window.addEventListener('resize', ajustarEscala);
+        ajustarEscala();
+    </script>
+
+</body>
+
+</html>

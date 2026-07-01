@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermercado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <img id="punto1" src="./img/punto1.svg" alt="">
+        <img id="flechader" src="./img/flechader.svg" alt="">
+        <img id="flechaizq" src="./img/flechaizq.svg" alt="">
+        <img id="texto" src="./img/texto.svg" alt="">
+        <img id="casa" src="./img/casa.svg" alt="">
+        <div id="data"></div>
+        <img id="sonidoBTN" src="./img/sonido.svg" alt="">
+        <img id="nube" src="./img/nube.svg" alt="">
+        <audio id="sonido" src="./img/sonido.mp3"></audio>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+    <script>
+
+        const btnSonido = document.getElementById('sonidoBTN');
+        const audio = document.getElementById('sonido');
+        const data = document.getElementById('data');
+        const texto = document.getElementById('texto');
+
+        let dataEnMovimiento = false;
+
+        data.style.transition = 'none';
+        data.style.cursor = 'pointer';
+
+        // Estado inicial del texto: oculto
+        texto.style.opacity = '0';
+        texto.style.transition = 'opacity 0.6s ease';
+
+        const dataAnim = lottie.loadAnimation({
+            container: data,
+            renderer: 'svg',
+            loop: true,
+            autoplay: false,
+            path: './img/data.json'
+        });
+
+        const DURACION_CAMINADO = 6000; // ms, debe coincidir con la transición CSS
+
+        function iniciarCicloCaminado() {
+            if (dataEnMovimiento) return;
+            dataEnMovimiento = true;
+
+            // --- Arrancan juntos: audio + animación + movimiento + texto ---
+            audio.currentTime = 0;
+            audio.play();
+            btnSonido.style.opacity = '1';
+            btnSonido.style.filter = 'brightness(1)';
+            texto.style.opacity = '1';
+
+            data.style.transition = 'none';
+            data.style.opacity = '1';
+            data.getBoundingClientRect(); // fuerza reflow antes de animar
+
+            dataAnim.goToAndPlay(0, true);
+
+            data.style.transition = `transform ${DURACION_CAMINADO / 1000}s linear`;
+            data.style.transform = 'translateX(200%)';
+
+            // --- Terminan juntos ---
+            setTimeout(function () {
+                dataAnim.stop();
+                audio.pause();
+                audio.currentTime = 0;
+                btnSonido.style.opacity = '0.5';
+                btnSonido.style.filter = 'brightness(0.6)';
+                texto.style.opacity = '0';
+
+                data.style.transition = 'opacity 0.6s ease';
+                data.style.opacity = '0';
+
+                setTimeout(function () {
+                    data.style.transition = 'none';
+                    data.style.transform = 'translateX(0)';
+                    data.style.opacity = '1';
+                    dataEnMovimiento = false;
+                }, 800);
+            }, DURACION_CAMINADO);
+        }
+
+        let audioActivo = false;
+        btnSonido.addEventListener('click', function () {
+            if (dataEnMovimiento) return;
+            if (!audioActivo) {
+                audio.currentTime = 0;
+                audio.play();
+                audioActivo = true;
+                btnSonido.style.opacity = '1';
+                btnSonido.style.filter = 'brightness(1)';
+            } else {
+                audio.pause();
+                audio.currentTime = 0;
+                audioActivo = false;
+                btnSonido.style.opacity = '0.5';
+                btnSonido.style.filter = 'brightness(0.6)';
+            }
+        });
+
+        audio.addEventListener('ended', function () {
+            audioActivo = false;
+            if (!dataEnMovimiento) {
+                btnSonido.style.opacity = '0.5';
+                btnSonido.style.filter = 'brightness(0.6)';
+            }
+        });
+
+        document.getElementById('punto1').addEventListener('click', iniciarCicloCaminado);
+        data.addEventListener('click', iniciarCicloCaminado);
+        const flecha2 = document.getElementById('flechader');
+        flecha2.addEventListener('click', function () {
+            window.parent.postMessage('siguiente-escena', '*');
+        });
+
+        const flecha1 = document.getElementById('flechaizq');
+        flecha1.addEventListener('click', function () {
+            window.parent.postMessage('escena-anterior', '*');
+        });
+        function ajustarEscala() {
+            const escalaX = window.innerWidth / 1366;
+            const escalaY = window.innerHeight / 768;
+            const escala = Math.min(escalaX, escalaY);
+            document.documentElement.style.setProperty('--escala', escala);
+        }
+        window.addEventListener('resize', ajustarEscala);
+        ajustarEscala();
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="arboles"></div>
+        <div id="sora"></div>
+        <div id="asher"></div>
+        <img id="punto4" src="./img/punto4.svg" alt="">
+        <img id="punto5" src="./img/punto5.svg" alt="">
+        <img id="flechaizq" src="./img/SVG/flechaizq.svg" alt="">
+        <img id="flechader" src="./img/SVG/flechader.svg" alt="">
+        <img id="sonido" src="./img/SVG/SVG/sonido.svg" alt="">
+        <audio id="audioVoz" src="./img/images/voz.mp3"></audio>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+    <script>
+
+        /* ── Referencias DOM ── */
+        const voz = document.getElementById('audioVoz');
+        const personaje = document.getElementById('sora');
+        const asherEl = document.getElementById('asher');
+
+        /* ── Animaciones Lottie ── */
+        const soraAnimado = lottie.loadAnimation({
+            container: personaje,
+            renderer: 'svg',
+            autoplay: false,
+            loop: true,
+            path: 'img/sora.json'
+        });
+
+        const asherAnimado = lottie.loadAnimation({
+            container: asherEl,
+            renderer: 'svg',
+            autoplay: false,
+            loop: true,
+            path: 'img/asher.json'
+        });
+
+        /* ── Sonido: toggle audio ── */
+        let vozActiva = false;
+        document.getElementById('sonido').addEventListener('click', function () {
+            if (!vozActiva) {
+                voz.play();
+                vozActiva = true;
+            } else {
+                voz.pause();
+                voz.currentTime = 0;
+                vozActiva = false;
+            }
+        });
+
+        /* ── Punto 4: toggle Asher ── */
+        let asherActivo = false;
+        document.getElementById('punto4').addEventListener('click', function () {
+            if (!asherActivo) {
+                asherAnimado.play();
+                asherActivo = true;
+            } else {
+                asherAnimado.pause();
+                asherActivo = false;
+            }
+        });
+
+        /* ── Punto 5: animación completa de Sora (caminar + desaparecer) ── */
+        document.getElementById('punto5').addEventListener('click', function () {
+            soraAnimado.setDirection(1);
+            soraAnimado.play();
+            personaje.style.transition = 'transform 5s linear';
+            personaje.style.transform = 'translateX(240%)';
+
+            setTimeout(function () {
+                personaje.style.transition = 'opacity 1s ease';
+                personaje.style.opacity = '0';
+                setTimeout(function () {
+                    personaje.style.display = 'none';
+                    soraAnimado.stop();
+                }, 1000);
+            }, 5000);
+        });
+
+        /* ── Clic en Asher: toggle play/pause ── */
+        let asherClic = false;
+        asherEl.addEventListener('click', function () {
+            if (!asherClic) {
+                asherAnimado.play();
+                asherClic = true;
+            } else {
+                asherAnimado.pause();
+                asherClic = false;
+            }
+        });
+        // Navegación hacia la siguiente escena
+        const flecha2 = document.getElementById('flechader');
+        flecha2.addEventListener('click', function () {
+            window.parent.postMessage('siguiente-escena', '*');
+        });
+
+        // Navegación hacia la escena anterior
+        const flecha1 = document.getElementById('flechaizq');
+        flecha1.addEventListener('click', function () {
+            window.parent.postMessage('escena-anterior', '*');
+        });
+        function ajustarEscala() {
+            const escalaX = window.innerWidth / 1366;
+            const escalaY = window.innerHeight / 768;
+            const escala = Math.min(escalaX, escalaY);
+            document.documentElement.style.setProperty('--escala', escala);
+        }
+        window.addEventListener('resize', ajustarEscala);
+        ajustarEscala();
+
+    </script>
+</body>
+
+</html>

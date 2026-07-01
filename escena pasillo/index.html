@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasillo</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="escena">
+            <img id="cande" src="./assets/candelabro.svg" alt="">
+            <img id="puerta" src="./assets/puerta.svg" alt="">
+            <img id="cuadro" src="./assets/cuadro.svg" alt="">
+            <img id="cuadros" src="./assets/cuadros.svg" alt="">
+            <div id="moso"></div>
+            <div id="mujer"></div>
+            <img class="der" src="./assets/flecha der.svg" alt="">
+            <img class="izq" src="./assets/flecha izq.svg" alt="">
+            <img id="hoja" src="./assets/hoja1.svg" alt="">
+            <img id="hoja2" src="./assets/hoja1.svg" alt="">
+            <img id="hoja3" src="./assets/hoja1.svg" alt="">
+            <img id="hoja4" src="./assets/hoja1.svg" alt="">
+            <img class="sonido" src="./assets/sonido.svg" alt="">
+            <img class="home" src="./assets/home.svg" alt="">
+            <img id="imgAudio" src="./assets/globo de texto_1.png" alt="">
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+    <script>
+        const moso = document.getElementById("moso");
+        const mujer = document.getElementById("mujer");
+        const btnSonido = document.querySelector(".sonido");
+        const imgAudio = document.getElementById("imgAudio");
+
+        const Cmoso = lottie.loadAnimation({
+            container: moso,
+            render: 'svg',
+            loop: false,
+            autoplay: false,
+            path: 'after/moso.json'
+        });
+        const Cmujer = lottie.loadAnimation({
+            container: mujer,
+            render: 'svg',
+            loop: false,
+            autoplay: false,
+            path: 'after/mujer.json'
+        });
+
+        const audioCaminado = new Audio('./assets/audio.mp3');
+        audioCaminado.loop = true;
+
+        function mostrarImg() {
+            imgAudio.style.opacity = "1";
+        }
+
+        function ocultarImg() {
+            imgAudio.style.opacity = "0";
+        }
+
+        function intentarAutoplay() {
+            audioCaminado.play()
+                .then(() => mostrarImg())
+                .catch(() => { });
+            document.removeEventListener("click", intentarAutoplay);
+            document.removeEventListener("touchstart", intentarAutoplay);
+        }
+
+        window.addEventListener("load", () => {
+            audioCaminado.play()
+                .then(() => mostrarImg())
+                .catch(() => {
+                    document.addEventListener("click", intentarAutoplay);
+                    document.addEventListener("touchstart", intentarAutoplay);
+                });
+        });
+
+        audioCaminado.addEventListener("pause", ocultarImg);
+        audioCaminado.addEventListener("ended", ocultarImg);
+        audioCaminado.addEventListener("play", mostrarImg);
+
+        btnSonido.addEventListener("click", function () {
+            if (audioCaminado.paused) {
+                audioCaminado.play();
+            } else {
+                audioCaminado.pause();
+            }
+        });
+
+        document.getElementById("hoja").addEventListener("click", function () {
+            Cmoso.stop();
+            Cmoso.play();
+            document.getElementById("moso").classList.remove("caminar");
+            setTimeout(() => { document.getElementById("moso").classList.add("caminar"); }, 10);
+
+            Cmujer.stop();
+            Cmujer.play();
+            document.getElementById("mujer").classList.remove("caminar");
+            setTimeout(() => { document.getElementById("mujer").classList.add("caminar"); }, 10);
+        });
+    </script>
+    <script src="./animacion.js"></script>
+    <script>
+        document.querySelector(".der").addEventListener("click", () => {
+            window.parent.postMessage("siguiente-escena", "*");
+        });
+        document.querySelector(".izq").addEventListener("click", () => {
+            window.parent.postMessage("escena-anterior", "*");
+        });
+        function ajustarEscala() {
+            const escalaX = window.innerWidth / 1366;
+            const escalaY = window.innerHeight / 768;
+            const escala = Math.min(escalaX, escalaY);
+            document.documentElement.style.setProperty('--escala', escala);
+        }
+        window.addEventListener('resize', ajustarEscala);
+        ajustarEscala();
+    </script>
+</body>
+
+</html>

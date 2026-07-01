@@ -1,0 +1,106 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: black;
+}
+
+.container {
+    background-image: url('./img/ciudad.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 1366px;
+    height: 768px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(var(--escala, 1));
+    transform-origin: center center;
+}
+
+#punto1 {
+    position: absolute;
+    left: 11%;
+    cursor: pointer;
+    width: 3%;
+    top: 38%;
+    z-index: 5;
+}
+
+#punto1:hover {
+    transform: scale(1.3);
+}
+
+#flechaizq {
+    position: absolute;
+    width: 70px;
+    left: 20px;
+    top: 290px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+#flechaizq:hover {
+    transform: scale(1.3);
+}
+
+#flechader {
+    position: absolute;
+    width: 70px;
+    left: 1280px;
+    top: 290px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+#flechader:hover {
+    transform: scale(1.3);
+}
+
+#casa {
+    position: absolute;
+    left: 90%;
+    top: 70%;
+    width: 5%;
+    cursor: pointer;
+    z-index: 5;
+}
+
+#casa:hover {
+    transform: scale(1.3);
+}
+
+#sonidoBTN {
+    position: absolute;
+    left: 90%;
+    top: 85%;
+    width: 5%;
+    cursor: pointer;
+    z-index: 5;
+}
+
+#sonidoBTN:hover {
+    transform: scale(1.3);
+}
+
+#texto {
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
+    width: 15%;
+    position: absolute;
+    left: 40%;
+    top: 30%;
+}
+
+#data {
+    position: absolute;
+    left: 0.5%;
+    top: 18%;
+    width: 80%;
+    z-index: 1;
+}

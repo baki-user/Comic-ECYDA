@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermercado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="perro"></div>
+        <div id="sora"></div>
+        <img id="punto1" src="./img/punto1.svg" alt="">
+        <img id="punto2" src="./img/punto2.svg" alt="">
+        <img id="punto3" src="./img/punto3.svg" alt="">
+        <img id="flechader" src="./img/flechader.svg" alt="">
+        <img id="flechaizq" src="./img/flechaizq.svg" alt="">
+        <img id="texto" src="./img/texto.svg" alt="">
+        <img id="casa" src="./img/casa.svg" alt="">
+        <img id="sonidoBTN" src="./img/sonido.svg" alt="">
+        <img id="nube" src="./img/nube_Mesa de trabajo 1.svg" alt="">
+        <audio id="sonido" src="./img/voz.mp3"></audio>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+    <script>
+
+        const sora = document.getElementById('sora');
+        const soraAnim = lottie.loadAnimation({
+            container: sora,
+            renderer: 'svg',
+            autoplay: false,
+            loop: true,
+            path: 'img/sora.json'
+        });
+
+        let soraEnMovimiento = false;
+
+
+        const btnSonido = document.getElementById('sonidoBTN');
+        const audio = document.getElementById('sonido');
+        let audioActivo = false;
+
+        function reproducirAudio() {
+            if (!audioActivo) {
+                audio.currentTime = 0;
+                audio.play();
+                audioActivo = true;
+
+
+            }
+        }
+
+        function detenerAudio() {
+            audio.pause();
+            audio.currentTime = 0;
+            audioActivo = false;
+
+
+        }
+
+        btnSonido.addEventListener('click', function () {
+            if (!audioActivo) {
+                reproducirAudio();
+            } else {
+                detenerAudio();
+            }
+        });
+
+        audio.addEventListener('ended', function () {
+            audioActivo = false;
+
+
+        });
+
+        const texto = document.getElementById('texto');
+        texto.style.opacity = '0';
+        texto.style.transition = 'opacity 0.8s ease';
+
+
+        document.getElementById('punto1').addEventListener('click', function () {
+            if (soraEnMovimiento) return;
+            soraEnMovimiento = true;
+
+            reproducirAudio();
+
+
+            texto.style.opacity = '1';
+
+            sora.style.transition = 'none';
+            sora.style.opacity = '1';
+            sora.style.display = 'block';
+            sora.style.transform = 'translateX(-120%)';
+
+            sora.getBoundingClientRect();
+
+            soraAnim.setDirection(1);
+            soraAnim.play();
+
+            sora.style.transition = 'transform 6s linear';
+            sora.style.transform = 'translateX(38%)';
+
+            setTimeout(function () {
+
+                sora.style.transition = 'opacity 0.8s ease';
+                sora.style.opacity = '0';
+                texto.style.opacity = '0';
+
+                setTimeout(function () {
+                    soraAnim.stop();
+                    soraEnMovimiento = false;
+                }, 800);
+            }, 6000);
+        });
+
+        const perro = document.getElementById('perro');
+        const perroAnimado = lottie.loadAnimation({
+            container: perro,
+            renderer: 'svg',
+            autoplay: false,
+            loop: false,
+            path: 'img/perro.json'
+        });
+
+        perro.addEventListener('click', function () {
+            perroAnimado.goToAndPlay(0, true);
+        });
+
+        perro.addEventListener('mouseenter', function () {
+            perroAnimado.goToAndPlay(0, true);
+        });
+
+        perroAnimado.addEventListener('complete', function () {
+            perroAnimado.goToAndStop(0, true);
+        });
+
+        document.getElementById('punto2').addEventListener('click', function () {
+            perroAnimado.stop();
+            perroAnimado.playSegments([1, 2], false);
+            perroAnimado.play();
+        });
+
+        const nube = document.getElementById('nube');
+        const escenario = document.querySelector('.container');
+
+        let moviendose = false;
+        let posX = 0;
+        let direccion = 1;
+        let animacion;
+
+        nube.style.animation = 'none';
+        nube.style.position = 'absolute';
+        nube.style.cursor = 'pointer';
+
+        nube.addEventListener('click', function () {
+            if (moviendose) {
+                cancelAnimationFrame(animacion);
+                moviendose = false;
+                return;
+            }
+
+            moviendose = true;
+            posX = nube.offsetLeft;
+
+            function mover() {
+                const limiteIzq = 0;
+                const limiteDer = escenario.offsetWidth - nube.offsetWidth;
+
+                posX += direccion * 2;
+
+                if (posX >= limiteDer) {
+                    posX = limiteDer;
+                    direccion = -1;
+                } else if (posX <= limiteIzq) {
+                    posX = limiteIzq;
+                    direccion = 1;
+                }
+
+                nube.style.left = posX + 'px';
+                animacion = requestAnimationFrame(mover);
+            }
+
+            mover();
+        });
+        // Navegación hacia la siguiente escena
+        const flecha2 = document.getElementById('flechader');
+        flecha2.addEventListener('click', function () {
+            window.parent.postMessage('siguiente-escena', '*');
+        });
+
+        // Navegación hacia la escena anterior
+        const flecha1 = document.getElementById('flechaizq');
+        flecha1.addEventListener('click', function () {
+            window.parent.postMessage('escena-anterior', '*');
+        });
+        function ajustarEscala() {
+            const escalaX = window.innerWidth / 1366;
+            const escalaY = window.innerHeight / 768;
+            const escala = Math.min(escalaX, escalaY);
+            document.documentElement.style.setProperty('--escala', escala);
+        }
+        window.addEventListener('resize', ajustarEscala);
+        ajustarEscala();
+
+    </script>
+</body>
+
+</html>

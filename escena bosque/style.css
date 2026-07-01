@@ -1,0 +1,111 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: black;
+}
+.container {
+    background-image: url(./img/bosque.svg);
+    background-size: cover;
+    position: absolute;
+    width: 1366px;
+    height: 768px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(var(--escala, 1));
+    transform-origin: center center;
+}
+
+#sora {
+    position: absolute;
+    left: 33%;
+    top: 45%;
+    width: 20%;
+
+}
+
+#asher {
+    position: absolute;
+    left: 45%;
+    top: 55%;
+    width: 15%;
+
+}
+
+
+#asher {
+    cursor: pointer;
+}
+
+#sora {
+    cursor: pointer;
+}
+
+#punto4 {
+    position: absolute;
+    left: 52%;       
+    top: 55%;
+    width: 3%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#punto4:hover {
+    transform: scale(1.3);
+}
+#flechaizq {
+    position: absolute;
+    width: 70px;
+    left: 20px;
+    top: 290px;
+    cursor: pointer;
+}
+#flechaizq:hover {
+    transform: scale(1.3);
+}
+#punto5 {
+    position: absolute;
+    left: 43%;       
+    top: 45%;
+    width: 3%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+#punto5:hover {
+    transform: scale(1.3);
+}
+
+#flechader {
+    position: absolute;
+    width: 70px;
+    left: 1280px;
+    top: 290px;
+    cursor: pointer;
+}
+#flechader:hover {
+    transform: scale(1.3);
+}
+
+#casa {
+    position: absolute;
+    left: 90%;       
+    top: 70%;
+    width: 5%;
+    cursor: pointer;
+}
+#casa:hover {
+    transform: scale(1.3);
+}
+
+#sonido{
+    position: absolute;
+    left: 90%;       
+    top: 85%;
+    width: 5%;
+    cursor: pointer;
+}
+#sonido:hover {
+    transform: scale(1.3);
+}

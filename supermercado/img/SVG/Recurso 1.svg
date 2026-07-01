@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 257.01 157.44">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+        stroke-width: 0px;
+      }
+
+      .cls-3 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-4 {
+        font-family: MyriadPro-Regular, 'Myriad Pro';
+        font-size: 18px;
+      }
+
+      .cls-5 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0" y1="78.72" x2="257.01" y2="78.72" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#f1f2f2"/>
+    </linearGradient>
+  </defs>
+  <g id="Capa_1-2" data-name="Capa 1">
+    <g>
+      <path class="cls-2" d="m128.51,0C57.53,0,0,31.12,0,69.51c0,13.97,7.64,26.96,20.75,37.85l-13.64,50.08,50.31-30.03c20.36,7.33,44.79,11.6,71.08,11.6,70.97,0,128.51-31.12,128.51-69.51S199.48,0,128.51,0Z"/>
+      <text class="cls-4" transform="translate(18.06 70.89)"><tspan class="cls-5" x="0" y="0">P</tspan><tspan x="9.13" y="0">or fin llegue al supe</tspan><tspan class="cls-1" x="155.3" y="0">r</tspan><tspan x="161.26" y="0">me</tspan><tspan class="cls-6" x="185.29" y="0">r</tspan><tspan x="191" y="0">cad</tspan><tspan class="cls-3" x="217.89" y="0">o</tspan><tspan x="227.34" y="0">. </tspan></text>
+    </g>
+  </g>
+</svg>

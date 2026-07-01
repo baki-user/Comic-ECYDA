@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 110 110">
+  <defs>
+    <style>
+      .cls-1 {
+        filter: url(#drop-shadow-1);
+      }
+
+      .cls-2 {
+        fill: #ff7900;
+      }
+
+      .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-3 {
+        fill: #e6e6e6;
+      }
+    </style>
+    <filter id="drop-shadow-1" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="4.66"/>
+      <feGaussianBlur result="blur" stdDeviation="1.55"/>
+      <feFlood flood-color="#000" flood-opacity=".2"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Capa_1-2" data-name="Capa 1">
+    <g>
+      <g class="cls-1">
+        <path class="cls-2" d="m110,55c0,30.37-24.62,55-55,55S0,85.37,0,55,24.63,0,55,0s55,24.62,55,55Z"/>
+      </g>
+      <g>
+        <path class="cls-3" d="m49.87,29.59l-13.72,10.27h-12.53c-2.07,0-3.76,1.69-3.76,3.76v26.18c0,2.07,1.69,3.76,3.76,3.76h12.53l13.72,10.27c2.51,1.88,6.01.13,6.01-3.01v-48.23c0-3.13-3.57-4.89-6.01-3.01Z"/>
+        <path class="cls-3" d="m68.29,35.73c-1.69-1.69-4.51-1.69-6.2,0s-1.69,4.51,0,6.2c8.14,8.14,8.14,21.36,0,29.5-1.69,1.69-1.69,4.51,0,6.2.88.88,2,1.25,3.07,1.25s2.26-.44,3.07-1.32c11.65-11.46,11.65-30.26.06-41.84Z"/>
+        <path class="cls-3" d="m73.17,25.89c-1.69,1.69-1.69,4.51,0,6.2,6.58,6.58,10.21,15.28,10.21,24.62s-3.63,18.04-10.21,24.62c-1.69,1.69-1.69,4.51,0,6.2.88.88,2,1.32,3.07,1.32,1.13,0,2.26-.44,3.07-1.25,8.21-8.21,12.78-19.17,12.78-30.82s-4.51-22.55-12.78-30.82c-1.63-1.75-4.38-1.75-6.14-.06Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

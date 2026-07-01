@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cómic Interactivo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    #btnHome {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 48px;
+      height: 48px;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    #btnHome:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    #btnHome img {
+      width: 24px;
+      height: 24px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <iframe id="escena" src="instrucciones/index.html"></iframe>
+
+  <button id="btnHome" title="Ir al inicio">
+    <img src="home.svg" alt="Inicio">
+  </button>
+
+  <script>
+    const escenas = [
+      "instrucciones/index.html",
+      "capitulo 1/index.html",
+      "voz 1/index.html",
+      "escena restaurante/Index.html",
+      "escena pasillo/index.html",
+      "voz 2/index.html",
+      "escena cuarto/index.html",
+      "voz 3/index.html",
+      "escena carretera/index.html",
+      "capitulo2/index.html",
+      "voz 4/index.html",
+      "escena bosque/escenario.html",
+      "voz 5/index.html",
+      "supermercado/perro.html",
+      "voz 6/index.html",
+      "supermercado por dentro/index.html",
+      "voz 7 capitulo 2/index.html",
+      "escena asher/perro.html",
+      "voz 9 capitulo 2 final/index.html"
+    ];
+
+    let actual = 0;
+
+    window.addEventListener("message", (e) => {
+      if (e.data === "siguiente-escena" && actual < escenas.length - 1) {
+        actual++;
+        document.getElementById("escena").src = escenas[actual];
+      }
+      if (e.data === "escena-anterior" && actual > 0) {
+        actual--;
+        document.getElementById("escena").src = escenas[actual];
+      }
+    });
+
+    document.getElementById("btnHome").addEventListener("click", () => {
+      window.location.href = "/comic";
+    });
+
+    function ajustarEscala() {
+      const escalaX = window.innerWidth / 1366;
+      const escalaY = window.innerHeight / 768;
+      const escala = Math.min(escalaX, escalaY);
+      document.documentElement.style.setProperty('--escala', escala);
+    }
+
+    window.addEventListener('resize', ajustarEscala);
+    ajustarEscala();
+  </script>
+</body>
+
+</html>

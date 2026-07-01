@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+
+<body>
+    <div class="container">
+
+        <div id="carro"></div>
+        <div id="planta"></div>
+        <img id="punto1" src="./img/pi2.svg" alt="">
+        <div id="sora"></div>
+        <img id="punto2" src="./img/pi1.svg" alt="">
+        <img id="flecha1" src="./img/flecha izquierda.svg" alt="" style="cursor:pointer;">
+        <img id="flecha2" src="./img/flecha derecha.svg" alt="" style="cursor:pointer;">
+        <img id="sonido" src="./img/sonido.svg" alt="" style="cursor:pointer;">
+        <img id="home" src="./img/home.svg" alt="" style="cursor:pointer;">
+        <img id="Texto" src="./img/Recurso 3.svg" alt="">
+        <audio id="audio" src="./img/SoraCarro.mp3"></audio>
+        <audio id="arbol" src="./img/arbolmovi.mp3"></audio>
+        <audio id="inicio" src="./img/inicio.mp3"></audio>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+    <script>
+        const soraAudio = document.getElementById('audio');
+        const arbolAudio = document.getElementById('arbol');
+        const inicioAudio = document.getElementById('inicio');
+
+        const plantaanimado = lottie.loadAnimation({
+            container: document.getElementById("planta"),
+            render: 'svg',
+            loop: false,
+            autoplay: false,
+            path: 'img/plantas.json'
+        })
+        document.getElementById('punto1').addEventListener("click", function () {
+            plantaanimado.stop()
+            plantaanimado.playSegments([1, 40], true)
+            plantaanimado.play()
+            arbolAudio.play()
+        })
+        const soraanimado = lottie.loadAnimation({
+            container: document.getElementById("sora"),
+            render: 'svg',
+            loop: false,
+            autoplay: false,
+            path: 'img/sora.json'
+        })
+        document.getElementById('punto2').addEventListener("click", function () {
+            soraanimado.stop()
+            soraanimado.playSegments([1, 1080], true)
+            soraanimado.play()
+            setTimeout(function () {
+                soraAudio.play()
+            }, 3000)
+            document.getElementById('Texto').style.opacity = '0';
+            setTimeout(function () {
+                document.getElementById('Texto').style.opacity = '1';
+            }, 8000);
+        });
+        const carranimado = lottie.loadAnimation({
+            container: document.getElementById("carro"),
+            render: 'svg',
+            loop: false,
+            autoplay: true,
+            path: 'img/carro.json'
+        })
+        const sonidoBtn = document.getElementById('sonido');
+        sonidoBtn.addEventListener('click', function () {
+            if (inicioAudio.paused) {
+                inicioAudio.play();
+                sonidoBtn.style.opacity = '1';
+            } else {
+                inicioAudio.pause();
+                sonidoBtn.style.opacity = '0.4';
+            }
+        });
+    </script>
+    <script>
+        document.getElementById("flecha2").addEventListener("click", () => {
+            window.parent.postMessage("siguiente-escena", "*");
+        });
+        document.getElementById("flecha1").addEventListener("click", () => {
+            window.parent.postMessage("escena-anterior", "*");
+        });
+        function ajustarEscala() {
+            const escalaX = window.innerWidth / 1366;
+            const escalaY = window.innerHeight / 768;
+            const escala = Math.min(escalaX, escalaY);
+            document.documentElement.style.setProperty('--escala', escala);
+        }
+        window.addEventListener('resize', ajustarEscala);
+        ajustarEscala();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,308 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #000;
+}
+
+.escena {
+    width: 1366px;
+    height: 768px;
+    background-image: url(./assets/escenario-pasillo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    transform: scale(var(--escala, 1));
+}
+
+#cande {
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    top: -150px;
+    left: 510px;
+}
+
+#puerta {
+    width: 80px;
+    height: 150px;
+    position: absolute;
+    top: 220px;
+    left: 647px;
+}
+
+#cuadro {
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    top: 220px;
+    left: 300px;
+}
+
+#cuadros {
+    width: 100px;
+    height: 200px;
+    position: absolute;
+    top: 220px;
+    left: 950px;
+}
+
+#moso {
+    width: 250px;
+    position: absolute;
+    top: 200px;
+    left: 650px;
+}
+
+#mujer {
+    width: 270px;
+    position: absolute;
+    top: 250px;
+    left: 480px;
+}
+
+#hoja {
+    width: 80px;
+    position: absolute;
+    top: 600px;
+    left: 850px;
+    cursor: pointer;
+}
+
+#hoja2 {
+    width: 80px;
+    position: absolute;
+    top: 350px;
+    left: 330px;
+    cursor: pointer;
+}
+
+#hoja3 {
+    width: 80px;
+    position: absolute;
+    top: 80px;
+    left: 850px;
+    cursor: pointer;
+}
+
+#hoja4 {
+    width: 80px;
+    position: absolute;
+    top: 200px;
+    left: 550px;
+    cursor: pointer;
+}
+
+.home {
+    width: 70px;
+    position: absolute;
+    top: 600px;
+    left: 1280px;
+}
+
+.sonido {
+    width: 70px;
+    position: absolute;
+    top: 680px;
+    left: 1280px;
+    cursor: pointer;
+}
+
+.izq {
+    position: absolute;
+    width: 70px;
+    left: 20px;
+    top: 290px;
+    cursor: pointer;
+}
+
+.der {
+    position: absolute;
+    width: 70px;
+    left: 1280px;
+    top: 290px;
+    cursor: pointer;
+}
+
+.candelabro1Animacion {
+    animation: rotacion 2s ease-in-out;
+}
+
+.puertaDesaparecer {
+    animation: desaparecer 0.8s ease forwards;
+}
+
+.cuadroDesaparecer {
+    animation: sacudirYDesaparecer 1.2s ease forwards;
+}
+
+#moso.caminar {
+    animation: irAPuertaMoso 3s ease forwards;
+}
+
+#mujer.caminar {
+    animation: irAPuertaMujer 3s ease forwards;
+}
+
+@keyframes irAPuertaMoso {
+    0% {
+        transform: translateY(0px) translateX(0px) scale(1);
+        opacity: 1;
+    }
+
+    70% {
+        transform: translateY(-200px) translateX(-50px) scale(0.4);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-300px) translateX(-60px) scale(0.2);
+        opacity: 0;
+    }
+}
+
+@keyframes irAPuertaMujer {
+    0% {
+        transform: translateY(0px) translateX(0px) scale(1);
+        opacity: 1;
+    }
+
+    70% {
+        transform: translateY(-200px) translateX(50px) scale(0.4);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-300px) translateX(60px) scale(0.2);
+        opacity: 0;
+    }
+}
+
+@keyframes sacudirYDesaparecer {
+    0% {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+
+    15% {
+        transform: rotate(-8deg);
+        opacity: 1;
+    }
+
+    30% {
+        transform: rotate(8deg);
+        opacity: 1;
+    }
+
+    45% {
+        transform: rotate(-6deg);
+        opacity: 1;
+    }
+
+    60% {
+        transform: rotate(6deg);
+        opacity: 1;
+    }
+
+    75% {
+        transform: rotate(-3deg);
+        opacity: 1;
+    }
+
+    85% {
+        transform: rotate(3deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes desaparecer {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+@keyframes rotacion {
+    0% {
+        rotate: 0deg;
+    }
+
+    45% {
+        rotate: 25deg;
+    }
+
+    85% {
+        rotate: -25deg;
+    }
+
+    100% {
+        rotate: 0deg;
+    }
+}
+
+.sonido,
+.home,
+.der,
+.izq,
+#hoja,
+#hoja2,
+#hoja3,
+#hoja4 {
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.sonido:hover,
+.home:hover,
+.der:hover,
+.izq:hover,
+#hoja:hover,
+#hoja2:hover,
+#hoja3:hover,
+#hoja4:hover {
+    transform: scale(1.1);
+}
+
+#imgAudio {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    /* ajusta posición y tamaño según necesites */
+    top: 600px;
+    left: 20%;
+    transform: translateX(-50%);
+    width: 200px;
+}
+
+#imgAudio.visible {
+    opacity: 1;
+}

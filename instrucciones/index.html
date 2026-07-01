@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <img id="flecha2" src="./img/flecha derecha.svg" alt="" style="cursor:pointer;">
+        <img id="fondo" src="./img/fondo.png" alt="" style="cursor:pointer;">
+        <audio id="audio" src="./img/audio.mp3"></audio>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+    <script>
+        document.getElementById("flecha2").addEventListener("click", () => {
+            window.parent.postMessage("siguiente-escena", "*");
+        });
+
+        document.getElementById("flecha1").addEventListener("click", () => {
+            window.parent.postMessage("escena-anterior", "*");
+        });
+        function ajustarEscala() {
+            const escalaX = window.innerWidth / 1366;
+            const escalaY = window.innerHeight / 768;
+            const escala = Math.min(escalaX, escalaY);
+            document.documentElement.style.setProperty('--escala', escala);
+        }
+        window.addEventListener('resize', ajustarEscala);
+        ajustarEscala();
+    </script>
+
+</body>
+
+</html>

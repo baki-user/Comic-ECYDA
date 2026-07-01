@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        
+        <img id="flecha1" src="./img/flecha izquierda.svg" alt="" style="cursor:pointer;">
+        <img id="flecha2" src="./img/flecha derecha.svg" alt="" style="cursor:pointer;">
+        <img id="sonido" src="./img/sonido.svg" alt="" style="cursor:pointer;">
+        <img id="home" src="./img/home.svg" alt="" style="cursor:pointer;">
+        <img id="texto" src="./img/texto.svg" alt="">
+        <audio id="audio" src="./img/audio.mp3"></audio>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+    <script>
+        const inicioAudio = document.getElementById('audio');
+
+        const sonidoBtn = document.getElementById('sonido');
+        sonidoBtn.addEventListener('click', function () {
+            if (inicioAudio.paused) {
+                inicioAudio.play();
+                sonidoBtn.style.opacity = '1';
+            } else {
+                inicioAudio.pause();
+                sonidoBtn.style.opacity = '0.4';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

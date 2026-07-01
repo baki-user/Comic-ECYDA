@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <div id="mama"></div>
+        <div id="papa"></div>
+        <img id="punto1" src="./img/pi1.svg" alt="">
+        <img id="punto2" src="./img/pi2.svg" alt="">
+        <img id="punto3" src="./img/pi3.svg" alt="">
+        <img id="flecha1" src="./img/flecha izquierda.svg" alt="" style="cursor:pointer;">
+        <img id="flecha2" src="./img/flecha derecha.svg" alt="" style="cursor:pointer;">
+        <img id="sonido" src="./img/sonido.svg" alt="" style="cursor:pointer;">
+        <img id="home" src="./img/home.svg" alt="" style="cursor:pointer;">
+        <audio id="audio1" src="./img/audio1.mp3"></audio>
+        <img id="texto1" src="./img/texto1.svg" alt="">
+        <audio id="audio2" src="./img/audio2.mp3"></audio>
+        <img id="texto2" src="./img/texto2.svg" alt="">
+        <audio id="audio3" src="./img/audio3.mp3"></audio>
+        <img id="texto3" src="./img/texto3.svg" alt="">
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+    <script>
+        const audioPapa = document.getElementById('audio1');
+        const audioMama = document.getElementById('audio2');
+        const audiopapas = document.getElementById('audio3');
+        const mamaanimado = lottie.loadAnimation({
+            container: document.getElementById("mama"),
+            render: 'svg',
+            loop: false,
+            autoplay: false,
+            path: 'img/mamá.json'
+        })
+        const papaanimado = lottie.loadAnimation({
+            container: document.getElementById("papa"),
+            render: 'svg',
+            loop: false,
+            autoplay: false,
+            path: 'img/papá.json'
+        })
+        document.getElementById('punto1').addEventListener("click", function () {
+            papaanimado.stop()
+            papaanimado.playSegments([1, 20], true)
+            papaanimado.play()
+            audioPapa.play()
+            document.getElementById('texto1').style.opacity = '0';
+            setTimeout(function () {
+                document.getElementById('texto1').style.opacity = '1';
+            }, 1000);
+        })
+        document.getElementById('punto2').addEventListener("click", function () {
+            mamaanimado.stop()
+            mamaanimado.playSegments([1, 20], true)
+            mamaanimado.play()
+            audioMama.play()
+            document.getElementById('texto1').style.display = 'none'
+
+
+            document.getElementById('texto2').style.opacity = '0';
+            setTimeout(function () {
+                document.getElementById('texto2').style.opacity = '1';
+            }, 1000);
+        })
+        document.getElementById('punto3').addEventListener("click", function () {
+            audiopapas.play()
+            document.getElementById('texto1').style.display = 'none';
+            document.getElementById('texto2').style.display = 'none';
+            document.getElementById('texto3').style.opacity = '0';
+            setTimeout(function () {
+                document.getElementById('texto3').style.opacity = '1';
+            }, 1000);
+        })
+    </script>
+    <script>
+        
+        const flecha2 = document.getElementById('flecha2');
+        flecha2.addEventListener('click', function () {
+            window.parent.postMessage('siguiente-escena', '*');
+        });
+
+        // Navegación hacia la escena anterior
+        const flecha1 = document.getElementById('flecha1');
+        flecha1.addEventListener('click', function () {
+            window.parent.postMessage('escena-anterior', '*');
+        });
+        function ajustarEscala() {
+            const escalaX = window.innerWidth / 1366;
+            const escalaY = window.innerHeight / 768;
+            const escala = Math.min(escalaX, escalaY);
+            document.documentElement.style.setProperty('--escala', escala);
+        }
+        window.addEventListener('resize', ajustarEscala);
+        ajustarEscala();
+    </script>
+
+</body>
+
+</html>
