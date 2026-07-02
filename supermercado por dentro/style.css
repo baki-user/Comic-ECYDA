@@ -83,8 +83,8 @@ html, body {
     transform: scale(1.1);
 }
 #asesino{
-    width: 180vh;
+    width: 130vh;
     position: absolute;
     top: -35%;
-    left: -45%;
+    left: -55%;
 }
