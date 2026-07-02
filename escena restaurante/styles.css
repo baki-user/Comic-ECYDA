@@ -155,7 +155,7 @@ body {
 .sonido {
     width: 70px;
     position: fixed;
-    top: 660px;
+    top: 1300px;
     left: calc(100vw - 100px);
     z-index: 20;
 }
@@ -164,7 +164,7 @@ body {
     position: absolute;
     width: 70px;
     left: 20px;
-    top: 290px;
+    top: 400px;
     cursor: pointer;
     z-index: 20;
 }
@@ -172,8 +172,8 @@ body {
 .der {
     position: absolute;
     width: 70px;
-    left: 1430px;
-    top: 290px;
+    left: 2430px;
+    top: 400px;
     cursor: pointer;
     z-index: 20;
 }
