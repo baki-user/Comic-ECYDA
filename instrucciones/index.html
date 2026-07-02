@@ -21,9 +21,6 @@
             window.parent.postMessage("siguiente-escena", "*");
         });
 
-        document.getElementById("flecha1").addEventListener("click", () => {
-            window.parent.postMessage("escena-anterior", "*");
-        });
         function ajustarEscala() {
             const escalaX = window.innerWidth / 1366;
             const escalaY = window.innerHeight / 768;
