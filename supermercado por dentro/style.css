@@ -10,6 +10,10 @@ html, body {
     margin: 0% auto;
     width: 1366px;
     height: 768px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(var(--escala, 1));
+    transform-origin: center center;
     position: relative;
     background-image: url(./img/Recurso\ 9-100.jpg);
     overflow: hidden;
