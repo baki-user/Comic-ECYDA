@@ -1,4 +1,4 @@
-.DS_Store
+﻿.DS_Store
 node_modules/
 *.log
 .vscode/
@@ -13,8 +13,9 @@ escena restaurante/after/*
 !escena restaurante/after/mujer.json
 !escena restaurante/after/ciclo de caminado moso.json
 !escena restaurante/after/images/
+escena restaurante/after/images/*.aep
 
-# Otras carpetas de edicion
+# Otras carpetas de edición
 escena asher/affter/
 *.aep
 *.ai
