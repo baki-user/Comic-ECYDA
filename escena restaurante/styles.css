@@ -162,7 +162,7 @@ body {
 
 .izq {
     position: absolute;
-    width: 70px;
+    width: 90px;
     left: 20px;
     top: 650px;
     cursor: pointer;
@@ -171,7 +171,7 @@ body {
 
 .der {
     position: absolute;
-    width: 70px;
+    width: 90px;
     left: 2430px;
     top: 650px;
     cursor: pointer;
