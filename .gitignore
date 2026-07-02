@@ -3,10 +3,11 @@ node_modules/
 *.log
 .vscode/
 
-# Escena pasillo - excluir todo excepto los Lottie JSON usados
+# Escena pasillo - excluir todo excepto los Lottie JSON usados y sus imagenes
 escena pasillo/after/*
 !escena pasillo/after/moso.json
 !escena pasillo/after/mujer.json
+!escena pasillo/after/images/
 
 # Escena restaurante - excluir todo excepto los Lottie JSON usados y sus imagenes
 escena restaurante/after/*
