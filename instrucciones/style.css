@@ -11,7 +11,7 @@ html, body {
     width: 1366px;
     height: 768px;
     position: relative;
-    background-image: url(../img/fondo.png);
+    background-image: url(./img/fondo.png);
     background-position: center;
     background-size: contain;
     overflow: hidden;
