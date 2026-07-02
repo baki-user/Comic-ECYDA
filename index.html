@@ -57,9 +57,6 @@
 <body>
   <iframe id="escena" src="instrucciones/index.html"></iframe>
 
-  <button id="btnHome" title="Ir al inicio">
-    <img src="home.svg" alt="Inicio">
-  </button>
 
   <script>
     const escenas = [
@@ -97,9 +94,6 @@
       }
     });
 
-    document.getElementById("btnHome").addEventListener("click", () => {
-  window.location.href = "https://proyecto-ecyda-mepfyeaey-baki2.vercel.app/comic";
-});
 
     function ajustarEscala() {
       const escalaX = window.innerWidth / 1366;
