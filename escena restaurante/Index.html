@@ -28,11 +28,11 @@
             </div>
         </div>
 
-        <img class="home" src="./assets/home.svg" alt="">
-        <img class="sonido" src="./assets/sonido.svg" alt="">
-        <img class="izq" src="./assets/flecha izq.svg" alt="">
-        <img class="der" src="./assets/flecha der.svg" alt="">
     </div>
+    <img class="home" src="./assets/home.svg" alt="">
+    <img class="sonido" src="./assets/sonido.svg" alt="">
+    <img class="izq" src="./assets/flecha izq.svg" alt="">
+    <img class="der" src="./assets/flecha der.svg" alt="">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
     <script>
@@ -45,7 +45,7 @@
         const anchoEscenarioReal = 4883;
         const escalaVisual = 0.5622;
         const anchoEscenarioVisual = anchoEscenarioReal * escalaVisual;
-        const limiteEscenario = Math.max(0, Math.min(anchoEscenarioVisual - window.innerWidth, anchoEscenarioVisual));
+        const limiteEscenario = Math.max(0, Math.min(anchoEscenarioVisual - 1366, anchoEscenarioVisual));
 
         const Cmujer = lottie.loadAnimation({
             container: mujer,
